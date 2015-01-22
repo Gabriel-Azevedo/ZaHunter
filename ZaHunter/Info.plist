@@ -36,5 +36,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Tap &quot;Allow&quot; to find that deliciuos pizza you are looking for.</string>
 </dict>
 </plist>
