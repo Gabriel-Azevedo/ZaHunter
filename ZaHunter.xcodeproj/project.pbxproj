@@ -17,6 +17,7 @@
 		238555921A70587A005FEC31 /* Pizzeria.m in Sources */ = {isa = PBXBuildFile; fileRef = 238555911A70587A005FEC31 /* Pizzeria.m */; };
 		238555941A7059B4005FEC31 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 238555931A7059B4005FEC31 /* CoreLocation.framework */; };
 		238555961A7059B9005FEC31 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 238555951A7059B9005FEC31 /* MapKit.framework */; };
+		23F2160F1A70E9110038CF5E /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F2160E1A70E9110038CF5E /* MapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,8 @@
 		238555911A70587A005FEC31 /* Pizzeria.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pizzeria.m; sourceTree = "<group>"; };
 		238555931A7059B4005FEC31 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		238555951A7059B9005FEC31 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		23F2160D1A70E9110038CF5E /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		23F2160E1A70E9110038CF5E /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,12 +95,12 @@
 		238555691A705680005FEC31 /* ZaHunter */ = {
 			isa = PBXGroup;
 			children = (
-				2385556E1A705680005FEC31 /* AppDelegate.h */,
-				2385556F1A705680005FEC31 /* AppDelegate.m */,
-				238555711A705680005FEC31 /* RootViewController.h */,
-				238555721A705680005FEC31 /* RootViewController.m */,
 				238555901A70587A005FEC31 /* Pizzeria.h */,
 				238555911A70587A005FEC31 /* Pizzeria.m */,
+				238555711A705680005FEC31 /* RootViewController.h */,
+				238555721A705680005FEC31 /* RootViewController.m */,
+				23F2160D1A70E9110038CF5E /* MapViewController.h */,
+				23F2160E1A70E9110038CF5E /* MapViewController.m */,
 				238555741A705681005FEC31 /* Main.storyboard */,
 				238555771A705681005FEC31 /* Images.xcassets */,
 				238555791A705681005FEC31 /* LaunchScreen.xib */,
@@ -109,6 +112,8 @@
 		2385556A1A705680005FEC31 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2385556E1A705680005FEC31 /* AppDelegate.h */,
+				2385556F1A705680005FEC31 /* AppDelegate.m */,
 				2385556B1A705680005FEC31 /* Info.plist */,
 				2385556C1A705680005FEC31 /* main.m */,
 			);
@@ -234,6 +239,7 @@
 			files = (
 				238555731A705680005FEC31 /* RootViewController.m in Sources */,
 				238555701A705680005FEC31 /* AppDelegate.m in Sources */,
+				23F2160F1A70E9110038CF5E /* MapViewController.m in Sources */,
 				2385556D1A705680005FEC31 /* main.m in Sources */,
 				238555921A70587A005FEC31 /* Pizzeria.m in Sources */,
 			);
@@ -426,6 +432,7 @@
 				2385558C1A705681005FEC31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2385558D1A705681005FEC31 /* Build configuration list for PBXNativeTarget "ZaHunterTests" */ = {
 			isa = XCConfigurationList;
@@ -434,6 +441,7 @@
 				2385558F1A705681005FEC31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

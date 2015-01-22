@@ -68,7 +68,13 @@
                             <constraint firstAttribute="centerX" secondItem="pg0-4v-tsJ" secondAttribute="centerX" id="sEl-JQ-coI"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="ZaHunter" id="OXr-np-qKn"/>
+                    <navigationItem key="navigationItem" title="ZaHunter" id="OXr-np-qKn">
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="imG-E0-dYx">
+                            <connections>
+                                <segue destination="yfc-VN-DcX" kind="push" id="9O7-wf-CKu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Tzd-tn-c2n" id="T3x-od-9Nf"/>
                         <outlet property="textView" destination="pg0-4v-tsJ" id="aOD-3h-H8X"/>
@@ -77,6 +83,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="773" y="328"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="vfy-ZT-UXw">
+            <objects>
+                <viewController id="yfc-VN-DcX" customClass="MapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aqg-MK-MRp"/>
+                        <viewControllerLayoutGuide type="bottom" id="jiR-cV-d3P"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0HF-9T-i5d">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="esd-PN-J38">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="esd-PN-J38" secondAttribute="trailing" constant="-16" id="28v-6W-Jvx"/>
+                            <constraint firstItem="esd-PN-J38" firstAttribute="top" secondItem="0HF-9T-i5d" secondAttribute="topMargin" id="Mir-YR-SZi"/>
+                            <constraint firstItem="esd-PN-J38" firstAttribute="leading" secondItem="0HF-9T-i5d" secondAttribute="leadingMargin" constant="-16" id="raI-Jf-Gz5"/>
+                            <constraint firstItem="jiR-cV-d3P" firstAttribute="top" secondItem="esd-PN-J38" secondAttribute="bottom" id="tPZ-c8-Q24"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="PJF-gt-rUs"/>
+                    <connections>
+                        <outlet property="mapView" destination="esd-PN-J38" id="XOD-ma-UFU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ATP-RK-8c1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1163" y="328"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sAA-Kl-YQ2">
