@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--ZaHunter-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="RootViewController" sceneMemberID="viewController">
@@ -55,7 +55,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="pg0-4v-tsJ" secondAttribute="bottom" constant="43" id="0Nn-nX-3AY"/>
                             <constraint firstItem="pg0-4v-tsJ" firstAttribute="top" secondItem="Tzd-tn-c2n" secondAttribute="bottom" constant="8" id="6c5-Kc-ddU"/>
@@ -68,7 +68,7 @@
                             <constraint firstAttribute="centerX" secondItem="pg0-4v-tsJ" secondAttribute="centerX" id="sEl-JQ-coI"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="OXr-np-qKn"/>
+                    <navigationItem key="navigationItem" title="ZaHunter" id="OXr-np-qKn"/>
                     <connections>
                         <outlet property="tableView" destination="Tzd-tn-c2n" id="T3x-od-9Nf"/>
                         <outlet property="textView" destination="pg0-4v-tsJ" id="aOD-3h-H8X"/>

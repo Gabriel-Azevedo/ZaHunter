@@ -17,6 +17,7 @@
 @property CLLocationManager *locationManager;
 @property CLLocation *currentLocation;
 @property Pizzeria *pizzeria;
+@property NSMutableArray *minutesArray;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 
@@ -30,6 +31,7 @@
     self.locationManager = [CLLocationManager new];
     self.locationManager.delegate = self;
     self.pizzeriasArray = [NSArray new];
+    self.minutesArray = [NSMutableArray new];
     [self updateCurrentLocation];
 }
 
@@ -77,7 +79,7 @@
             pizzeria.mapItem = mapItem;
             pizzeria.metersAway = metersAway;
             pizzeria.coordinate = mapItem.placemark.location.coordinate;
-            NSLog(@"%@, %.3f",[[pizzeria mapItem] name], metersAway/1000);
+//            NSLog(@"%@, %.3f",[[pizzeria mapItem] name], metersAway/1000);
 
             [temporaryArray addObject:pizzeria];
         }
@@ -85,18 +87,40 @@
         NSArray *sortedArray = [temporaryArray sortedArrayUsingDescriptors:@[sortDescriptor]];
         self.pizzeriasArray = [NSArray arrayWithArray:sortedArray];
         [self.tableView reloadData];
+        [self createSourceAndDestination];
+
     }];
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)createSourceAndDestination
 {
-    Pizzeria *pizzaria = [self.pizzeriasArray objectAtIndex:indexPath.row];
-    Pizzeria *pizzaria2 = [self.pizzeriasArray objectAtIndex:indexPath.row+1];
-    CLLocationCoordinate2D sourceCLL = pizzaria.coordinate;
-    CLLocationCoordinate2D destinationCLL = pizzaria2.coordinate;
+    CLLocationCoordinate2D sourceCLL;
+    CLLocationCoordinate2D destinationCLL;
+    for (int i = 0; i < 5; i++)
+    {
+        Pizzeria *pizzaria = [self.pizzeriasArray objectAtIndex:i];
+        Pizzeria *pizzaria2;
 
-    [self getPathDirection:sourceCLL andDestination:destinationCLL];
+        if (i == 0)
+        {
+            sourceCLL = CLLocationCoordinate2DMake(self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude);
+            pizzaria2 = [self.pizzeriasArray objectAtIndex:i+1];
+            destinationCLL = pizzaria2.coordinate;
+        }
+        else if (i == 5)
+        {
+            sourceCLL = pizzaria.coordinate;
+            destinationCLL = CLLocationCoordinate2DMake(self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude);
+        }
+        else
+        {
+            sourceCLL = pizzaria.coordinate;
+            pizzaria2 = [self.pizzeriasArray objectAtIndex:i+1];
+            destinationCLL = pizzaria2.coordinate;
+        }
 
+        [self getPathDirection:sourceCLL andDestination:destinationCLL];
+    }
 }
 
 -(void)getPathDirection:(CLLocationCoordinate2D)source andDestination:(CLLocationCoordinate2D)destination
@@ -118,23 +142,44 @@
     [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
         MKRoute *route = response.routes.lastObject;
 
-//        NSString *allSteps = [NSString new];
-//
-//        for (int i = 0; i < route.steps.count; i++)
-//        {
-//            MKRouteStep *step = [route.steps objectAtIndex:i];
-//            NSString *newStepString = step.instructions;
-//            allSteps = [allSteps stringByAppendingString:newStepString];
-//            allSteps = [allSteps stringByAppendingString:@"\n\n"];
-//        }
-        NSLog(@"%.2f meters",route.distance);
+        //        for (int i = 0; i < route.steps.count; i++)
+        //        {
+        //            MKRouteStep *step = [route.steps objectAtIndex:i];
+        //            NSString *newStepString = step.instructions;
+        //            allSteps = [allSteps stringByAppendingString:newStepString];
+        //            allSteps = [allSteps stringByAppendingString:@"\n\n"];
+        //        }
+        // NSLog(@"%.2f meters",route.distance);
+        //allSteps = [allSteps stringByAppendingString:[NSString stringWithFormat:@"%f",((route.distance*78)/60)]];
+        //allSteps = [allSteps stringByAppendingString:@"\n\n"];
+        NSString *time = [NSString stringWithFormat:@"%.2f", (route.expectedTravelTime)/60];
+        NSLog(@"%@",time);
+        [self.minutesArray addObject:time];
+        [self displayTime];
 
-        self.textView.text = allSteps;
-        
+        //self.textView.text = [NSString stringWithFormat:@"%.2f minute walk", (route.expectedTravelTime)/60];
+
     }];
-    
 }
 
+-(void)displayTime
+{
+    NSString *text = @"Leaving your current location,\n";
+    for (int i = 0; i < self.minutesArray.count-1; i++)
+    {
+        text = [text stringByAppendingString:@"you will arrive at "];
+        text = [text stringByAppendingString:[[[self.pizzeriasArray objectAtIndex:i] mapItem] name]];
+        text = [text stringByAppendingString:@" within "];
+        text = [text stringByAppendingString:[self.minutesArray objectAtIndex:i]];
+        text = [text stringByAppendingString:@" minutes.\nAfter that, "];
+    }
+    text = [text stringByAppendingString:@"you will arrive at your starting point"];
+    text = [text stringByAppendingString:@" within "];
+    text = [text stringByAppendingString:[self.minutesArray lastObject]];
+    text = [text stringByAppendingString:@" minutes."];
+
+    self.textView.text = text;
+}
 
 #pragma mark - UITableView Delegate Methods
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
